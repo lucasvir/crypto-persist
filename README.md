@@ -1,5 +1,5 @@
 # Crypto studies
-Criptografia - proposta de estudo feita pelo repositório [Back-end Brasil](https://github.com/backend-br).
+Criptografia - proposta de estudo feita no repositório [Back-end Brasil](https://github.com/backend-br).
 
 Projeto simples com o objetivo de estudo com criptografia.
 - Criptografia de atributos sensíveis de uma entidade. 
