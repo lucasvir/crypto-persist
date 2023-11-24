@@ -1,6 +1,8 @@
 package com.lucasvir.crypto.dto;
 
 import com.lucasvir.crypto.domain.User;
+import com.lucasvir.crypto.utils.SecurityComponents;
+
 public record UserDataDto(
         Long id,
         String userDocument,

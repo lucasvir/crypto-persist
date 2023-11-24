@@ -28,6 +28,7 @@ public class UserController {
             List<UserDataDto> users = service.index();
             return ResponseEntity.ok(users);
         } catch (RuntimeException e) {
+            System.out.printf(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }
@@ -48,7 +49,9 @@ public class UserController {
         User user = service.create(dto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(new UserDataDto(user));
+        UserDataDto userDto = new UserDataDto(user.getId(), dto.userDocument(), dto.creditCardToken(), dto.value());
+
+        return ResponseEntity.created(uri).body(userDto);
     }
 
     @PutMapping("{id}")

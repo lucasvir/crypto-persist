@@ -8,10 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 import java.io.Serializable;
-import java.nio.charset.StandardCharsets;
 
 @Entity
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -25,22 +26,18 @@ public class User implements Serializable {
     private String creditCardToken;
     private Long value;
 
-    public User(UserCreateDto dto) {
-        this.userDocument = hashSource(dto.userDocument());
-        this.creditCardToken = hashSource(dto.creditCardToken());
-        this.value = dto.value();
+    public void setUserDocument(String userDocument) {
+        this.userDocument = userDocument;
+    }
+
+    public void setCreditCardToken(String creditCardToken) {
+        this.creditCardToken = creditCardToken;
     }
 
     public void updateData(UserUpdateDto dto) {
-        this.userDocument = dto.userDocument() != null ? hashSource(dto.userDocument()) : getUserDocument();
-        this.creditCardToken = dto.creditCardToken() != null ? hashSource(dto.creditCardToken()) : getCreditCardToken();
+        this.userDocument = getUserDocument();
+        this.creditCardToken = getCreditCardToken();
         this.value = dto.value() != null ? dto.value() : getValue();
-    }
-
-    private String hashSource(String source) {
-        return Hashing.sha256()
-                .hashString(source, StandardCharsets.UTF_8)
-                .toString();
     }
 
 }
