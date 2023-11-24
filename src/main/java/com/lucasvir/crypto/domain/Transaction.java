@@ -1,8 +1,6 @@
 package com.lucasvir.crypto.domain;
 
-import com.google.common.hash.Hashing;
-import com.lucasvir.crypto.dto.UserCreateDto;
-import com.lucasvir.crypto.dto.UserUpdateDto;
+import com.lucasvir.crypto.dto.TransactionUpdateDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class User implements Serializable {
+public class Transaction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +32,7 @@ public class User implements Serializable {
         this.creditCardToken = creditCardToken;
     }
 
-    public void updateData(UserUpdateDto dto) {
+    public void updateData(TransactionUpdateDto dto) {
         this.userDocument = getUserDocument();
         this.creditCardToken = getCreditCardToken();
         this.value = dto.value() != null ? dto.value() : getValue();
